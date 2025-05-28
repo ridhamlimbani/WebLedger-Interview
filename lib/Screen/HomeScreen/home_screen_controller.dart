@@ -3,10 +3,19 @@ import 'package:get/get.dart';
 import 'package:webledger_interview/ApiService/api_service.dart';
 import 'package:webledger_interview/AppRouting/app_routing.dart';
 import 'package:webledger_interview/Model/recipes_model.dart';
+import 'package:webledger_interview/Utils/LocalStorage/get_storage.dart';
 import 'package:webledger_interview/Utils/LocalStorage/remove_storage.dart';
 import 'package:webledger_interview/Widget/common_snackbar.dart';
 
 class HomeScreenController extends GetxController{
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    GetLocalStorage().getLoginData();
+    GetLocalStorage().getTokenData();
+  }
   Future<RecipesModel> fetchRecipesDetails() async {
     Map<String, dynamic> map = await ApiService().getRecipesApi();
 
